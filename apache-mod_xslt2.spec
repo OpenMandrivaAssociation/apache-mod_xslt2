@@ -12,7 +12,7 @@
 Summary:	Mod_xslt is a DSO module for the apache web server
 Name:		apache-%{mod_name}
 Version:	1.3.8
-Release:	%mkrel 1.%{snap}.8
+Release:	%mkrel 1.%{snap}.9
 Group:		System/Servers
 License:	GPL
 URL:		http://www.mod-xslt2.com/
@@ -35,7 +35,7 @@ BuildRequires:	libxslt-devel
 BuildRequires:	pcre-devel
 BuildRequires:	pkgconfig
 BuildRequires:	file
-Provides:	apache-mod_xslt %{epoch}:%{version}-%{release}
+Provides:	apache-mod_xslt = %{epoch}:%{version}-%{release}
 Obsoletes:	apache-mod_xslt
 Epoch:		%{epoch}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot

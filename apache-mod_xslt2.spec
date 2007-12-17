@@ -38,7 +38,6 @@ BuildRequires:	file
 Provides:	apache-mod_xslt = %{epoch}:%{version}-%{release}
 Obsoletes:	apache-mod_xslt
 Epoch:		%{epoch}
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 mod-xslt2 is a server side module able to apply stylesheets to xml

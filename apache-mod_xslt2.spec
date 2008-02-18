@@ -9,7 +9,7 @@
 
 %define epoch 1
 
-Summary:	Mod_xslt is a DSO module for the apache web server
+Summary:	DSO module for the apache web server
 Name:		apache-%{mod_name}
 Version:	1.3.8
 Release:	%mkrel 1.%{snap}.9

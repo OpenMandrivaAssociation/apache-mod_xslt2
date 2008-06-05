@@ -81,7 +81,7 @@ find . -type f|xargs file|grep 'text'|cut -d: -f1|xargs perl -p -i -e 's/\r//'
 export WANT_AUTOCONF_2_5=1
 libtoolize --copy --force; aclocal-1.7; autoconf
 
-%configure2_5x \
+%configure2_5x --localstatedir=/var/lib \
     --with-sapi=apache2 \
     --with-apxs=%{_sbindir}/apxs \
     --with-apr-config=%{_bindir}/apr-1-config \

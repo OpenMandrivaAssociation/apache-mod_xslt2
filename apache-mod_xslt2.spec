@@ -12,7 +12,7 @@
 Summary:	DSO module for the apache web server
 Name:		apache-%{mod_name}
 Version:	1.3.8
-Release:	%mkrel 1.%{snap}.12
+Release:	%mkrel 1.%{snap}.13
 Group:		System/Servers
 License:	GPL
 URL:		http://www.mod-xslt2.com/

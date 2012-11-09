@@ -1,0 +1,80 @@
+diff -Naur modxslt-2004101700/doc/man/Makefile.in modxslt-2004101700.oden/doc/man/Makefile.in
+--- modxslt-2004101700/doc/man/Makefile.in	2004-10-02 10:24:10.000000000 +0200
++++ modxslt-2004101700.oden/doc/man/Makefile.in	2004-10-18 15:59:33.993284511 +0200
+@@ -78,7 +78,7 @@
+ 
+ install: modxslt-config.1 modxslt-perror.1 modxslt-parse.1
+ 	$(INSTALL) -d $(DESTDIR)$(mandir)/man1
+-	$(INSTALL) --mode=0644 --owner=root --group=root $^ $(DESTDIR)$(mandir)/man1
++	$(INSTALL) --mode=0644 $^ $(DESTDIR)$(mandir)/man1
+ 
+ uninstall:	
+ 	rm $(DESTDIR)$(mandir)/man1/{modxslt-config.1,modxslt-parse.1,modxslt-perror.1}
+diff -Naur modxslt-2004101700/lib/Makefile.in modxslt-2004101700.oden/lib/Makefile.in
+--- modxslt-2004101700/lib/Makefile.in	2004-10-02 10:24:02.000000000 +0200
++++ modxslt-2004101700.oden/lib/Makefile.in	2004-10-18 15:57:13.816195363 +0200
+@@ -156,13 +156,13 @@
+ install: install-library install-headers
+ 
+ install-library: libmodxslt$(LIB_VERSION).la 
+-	$(LIBTOOL) --mode=install install $(IFLAGS) -D -m 0644 -o root -g root \
++	$(LIBTOOL) --mode=install install $(IFLAGS) -D -m 0644 \
+ 		libmodxslt$(LIB_VERSION).la $(DESTDIR)$(libdir)/libmodxslt$(LIB_VERSION).la
+ 
+ install-headers:
+-	$(INSTALL) -d -m 0755 -o root -g root $(DESTDIR)$(includedir)/modxslt$(LIB_VERSION)
+-	$(INSTALL) -m 0644 -o root -g root $(srcdir)/modxslt$(LIB_VERSION)/*.h $(DESTDIR)$(includedir)/modxslt$(LIB_VERSION)
+-	$(INSTALL) -m 0644 -o root -g root ./modxslt$(LIB_VERSION)/*.h $(DESTDIR)$(includedir)/modxslt$(LIB_VERSION)
++	$(INSTALL) -d -m 0755 $(DESTDIR)$(includedir)/modxslt$(LIB_VERSION)
++	$(INSTALL) -m 0644 $(srcdir)/modxslt$(LIB_VERSION)/*.h $(DESTDIR)$(includedir)/modxslt$(LIB_VERSION)
++	$(INSTALL) -m 0644 ./modxslt$(LIB_VERSION)/*.h $(DESTDIR)$(includedir)/modxslt$(LIB_VERSION)
+ 
+ uninstall: uninstall-library uninstall-headers
+ 
+diff -Naur modxslt-2004101700/sapi/apache1/Makefile.in modxslt-2004101700.oden/sapi/apache1/Makefile.in
+--- modxslt-2004101700/sapi/apache1/Makefile.in	2004-10-02 10:24:02.000000000 +0200
++++ modxslt-2004101700.oden/sapi/apache1/Makefile.in	2004-10-18 15:57:39.594763838 +0200
+@@ -90,7 +90,7 @@
+ install-strip: install
+ 
+ install: mod_xslt.so Makefile
+-	$(INSTALL) $(IFLAGS) -D -m 0644 -o root -g root mod_xslt.so '$(DESTDIR)$(APXS_INSTALLDIR)/mod_xslt.so'
++	$(INSTALL) $(IFLAGS) -D -m 0644 mod_xslt.so '$(DESTDIR)$(APXS_INSTALLDIR)/mod_xslt.so'
+ 
+ uninstall:
+ 	rm -f '$(DESTDIR)$(APXS_INSTALLDIR)'/mod_xslt.so
+diff -Naur modxslt-2004101700/sapi/apache2/Makefile.in modxslt-2004101700.oden/sapi/apache2/Makefile.in
+--- modxslt-2004101700/sapi/apache2/Makefile.in	2004-10-02 10:24:09.000000000 +0200
++++ modxslt-2004101700.oden/sapi/apache2/Makefile.in	2004-10-18 15:59:16.668902993 +0200
+@@ -92,8 +92,7 @@
+ install: mod_xslt.la install-stamp Makefile
+ 
+ install-stamp: mod_xslt.la Makefile
+-	test "x$$UID" = "x" || test "x$$UID" = "x0" || { echo 'You must be root!'; exit 1; }
+-	$(LIBTOOL) --mode=install $(INSTALL) $(STRIP) -D -o root -g root -m 0644 mod_xslt.la '$(DESTDIR)$(APXS_INSTALLDIR)'
++	$(LIBTOOL) --mode=install $(INSTALL) $(STRIP) -D -m 0644 mod_xslt.la '$(DESTDIR)$(APXS_INSTALLDIR)'
+ 	@echo Removing extra files...
+ 	FILE=`grep dlname mod_xslt.la | sed -e "s/[^']*'\([^']*\).*/\1/"` && \
+ 	  find '$(DESTDIR)$(APXS_INSTALLDIR)' -name 'mod_xslt.*'|grep -v "$$FILE"|xargs rm -f && \
+diff -Naur modxslt-2004101700/utils/Makefile.in modxslt-2004101700.oden/utils/Makefile.in
+--- modxslt-2004101700/utils/Makefile.in	2004-10-02 10:24:02.000000000 +0200
++++ modxslt-2004101700.oden/utils/Makefile.in	2004-10-18 15:58:47.373257677 +0200
+@@ -125,15 +125,15 @@
+ install: install-modxslt-parse install-modxslt-config install-modxslt-perror
+ 
+ install-modxslt-perror:
+-	$(LIBTOOL) --mode=install install $(IFLAGS) -D -m 0755 -o root -g root modxslt-perror \
++	$(LIBTOOL) --mode=install install $(IFLAGS) -D -m 0755 modxslt-perror \
+ 		$(DESTDIR)$(bindir)/modxslt-perror
+ 
+ install-modxslt-parse:
+-	$(LIBTOOL) --mode=install install $(IFLAGS) -D -m 0755 -o root -g root modxslt-parse \
++	$(LIBTOOL) --mode=install install $(IFLAGS) -D -m 0755 modxslt-parse \
+ 		$(DESTDIR)$(bindir)/modxslt-parse
+ 
+ install-modxslt-config:
+-	install -D -m 0755 -o root -g root modxslt-config \
++	install -D -m 0755 modxslt-config \
+ 		$(DESTDIR)$(bindir)/modxslt-config
+ 
+ uninstall: uninstall-modxslt-parse uninstall-modxslt-config uninstall-modxslt-perror

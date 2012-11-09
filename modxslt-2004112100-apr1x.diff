@@ -1,0 +1,63 @@
+--- configure.ac	2004-11-14 16:27:44.000000000 +0100
++++ configure.ac.oden	2006-04-16 00:56:32.000000000 +0200
+@@ -428,46 +428,46 @@
+        fi
+       
+          # Look for apr_config
+-       AC_ARG_WITH(apr-config, AC_HELP_STRING([[--with-apr-config=FILE]], [Path to apr-config program]), 
+-	    [ APRC="$withval" ], [ AC_PATH_PROG(APRC, apr-config, [], [$PATH:/usr/sbin/:/usr/local/apache2/bin]) ])
++       AC_ARG_WITH(apr-1-config, AC_HELP_STRING([[--with-apr-1-config=FILE]], [Path to apr-1-config program]), 
++	    [ APRC="$withval" ], [ AC_PATH_PROG(APRC, apr-1-config, [], [$PATH:/usr/sbin/:/usr/local/apache2/bin]) ])
+ 
+          # Check if we found it
+        AC_DEFINED(APRC,,[
+-         AC_SAPI_STEP(apache2, [apache1 error], [couldn't find a valid 'apr-config'. Please use --with-apr-config.], 
++         AC_SAPI_STEP(apache2, [apache1 error], [couldn't find a valid 'apr-1-config'. Please use --with-apr-1-config.], 
+ 	 	      [sapi_apache_detected])
+          ])
+ 
+-         # Verify we can run apr-config
++         # Verify we can run apr-1-config
+        AC_ISCMD(APRC, [--version],,[ 
+-         AC_SAPI_STEP(apache2, [apache1 detect], [found 'apr-config' is not executable.], [sapi_apache_detected])
++         AC_SAPI_STEP(apache2, [apache1 detect], [found 'apr-1-config' is not executable.], [sapi_apache_detected])
+ 	 ])
+ 
+           # Check if we can link with libapr 
+-       AC_CHECK_LIB([apr-0], [apr_send], [APRCF='yes'],[
+-         AC_SAPI_STEP(apache2, [apache1 detect], ['apr-0' library found is not valid.], [sapi_apache_detected])
++       AC_CHECK_LIB([apr-1], [apr_socket_send], [APRCF='yes'],[
++         AC_SAPI_STEP(apache2, [apache1 detect], ['apr-1' library found is not valid.], [sapi_apache_detected])
+          ], [`$APRC --link-ld` `$APRC --libs`])
+ 
+          # Remember to provide aprc to compilation process
+        AC_SUBST(APRC)
+ 
+          # Look for apu_config
+-       AC_ARG_WITH(apu-config, AC_HELP_STRING([[--with-apu-config=FILE]], [Path to apu-config program]), 
+-	    [ APUC="$withval" ], [ AC_PATH_PROG(APUC, apu-config, [], [$PATH:/usr/sbin/:/usr/local/apache2/bin]) ])
++       AC_ARG_WITH(apu-1-config, AC_HELP_STRING([[--with-apu-1-config=FILE]], [Path to apu-1-config program]), 
++	    [ APUC="$withval" ], [ AC_PATH_PROG(APUC, apu-1-config, [], [$PATH:/usr/sbin/:/usr/local/apache2/bin]) ])
+ 
+          # Check if we found it
+        AC_DEFINED(APUC,,[
+-         AC_SAPI_STEP(apache2, [apache1 error], [couldn't find a valid 'apu-config'. Please use --with-apu-config.], 
++         AC_SAPI_STEP(apache2, [apache1 error], [couldn't find a valid 'apu-1-config'. Please use --with-apu-1-config.], 
+ 	 	      [sapi_apache_detected])
+          ])
+ 
+-         # Verify we can run apr-config
++         # Verify we can run apr-1-config
+        AC_ISCMD(APUC, [--version],,[ 
+-         AC_SAPI_STEP(apache2, [apache1 detect], ['apu-config' found is not executable.], [sapi_apache_detected])
++         AC_SAPI_STEP(apache2, [apache1 detect], ['apu-1-config' found is not executable.], [sapi_apache_detected])
+ 	 ])
+ 
+           # Check if we can link with libapr 
+-       AC_CHECK_LIB([aprutil-0], [apr_brigade_create], [APRUF='yes'],[
+-         AC_SAPI_STEP(apache2, [apache1 detect], ['aprutil-0' library found is not valid.], [sapi_apache_detected])
++       AC_CHECK_LIB([aprutil-1], [apr_brigade_create], [APRUF='yes'],[
++         AC_SAPI_STEP(apache2, [apache1 detect], ['aprutil-1' library found is not valid.], [sapi_apache_detected])
+          ], [`$APUC --link-ld` `$APUC --libs` `$APRC --link-ld`])
+ 
+          # Remember to provide aprc to compilation process

@@ -15,7 +15,7 @@ Version:	1.3.8
 Release:	%mkrel 1.%{snap}.15
 Group:		System/Servers
 License:	GPL
-URL:		http://www.mod-xslt2.com/
+URL:		https://www.mod-xslt2.com/
 Source0:	modxslt-%{snap}.tar.bz2
 Source1:	%{mod_conf}.bz2
 Patch0:		modxslt-2004101700-no_root_check.diff
